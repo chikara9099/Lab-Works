@@ -1,0 +1,10 @@
+3
+I a INT
+S
+I b FLOAT
+I a CHAR
+M
+D a
+M
+P C
+Q

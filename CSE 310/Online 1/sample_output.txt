@@ -1,0 +1,25 @@
+	ScopeTable# 1 created
+Cmd 1: I a INT
+	Inserted in ScopeTable# 1 at position 2, 1
+Cmd 2: S
+	ScopeTable# 1.1 created
+Cmd 3: I b FLOAT
+	Inserted in ScopeTable# 1.1 at position 3, 1
+Cmd 4: I a CHAR
+	Inserted in ScopeTable# 1.1 at position 2, 1
+Cmd 5: M
+	'a' found in ScopeTable# 1 at position 2, 1
+Merging failed due to collision of variable names
+Cmd 6: D a
+	Deleted 'a' from ScopeTable# 1.1 at position 2, 1
+Cmd 7: M
+	Inserted in ScopeTable# 1 at position 3, 1
+Merged 1.1 with its parent scope
+	ScopeTable# 1.1 removed
+Cmd 8: P C
+ScopeTable# 1
+1-->
+2--> <a,INT>
+3--> <b,FLOAT>
+Cmd 9: Q
+	ScopeTable# 1 removed

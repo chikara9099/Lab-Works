@@ -1,0 +1,25 @@
+	ScopeTable# 1 created
+Cmd 1: I foo FUNCTION INT INT FLOAT INT
+	Inserted in ScopeTable# 1 at position 1, 1
+Cmd 2: I car STRUCT INT n_doors BOOL is_electric
+	Inserted in ScopeTable# 1 at position 1, 2
+Cmd 3: I empty_struct STRUCT
+	Inserted in ScopeTable# 1 at position 2, 1
+Cmd 4: I nested_func FUNCTION VOID FUNCTION INT INT
+	Inserted in ScopeTable# 1 at position 1, 3
+Cmd 5: S
+	ScopeTable# 2 created
+Cmd 6: I foo VAR
+	Inserted in ScopeTable# 2 at position 1, 1
+Cmd 7: P C
+ScopeTable# 2
+1--> <foo,VAR>
+2-->
+Cmd 8: E
+	ScopeTable# 2 removed
+Cmd 9: P C
+ScopeTable# 1
+1--> <foo,FUNCTION,INT<==(INT,FLOAT,INT)> <car,STRUCT,{(INT,n_doors),(BOOL,is_electric)}> <nested_func,FUNCTION,VOID<==(FUNCTION,INT,INT)>
+2--> <empty_struct,STRUCT,{}>
+Cmd 10: Q
+	ScopeTable# 1 removed

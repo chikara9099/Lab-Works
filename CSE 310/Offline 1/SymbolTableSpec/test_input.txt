@@ -1,0 +1,11 @@
+2
+I foo FUNCTION INT INT FLOAT INT
+I car STRUCT INT n_doors BOOL is_electric
+I empty_struct STRUCT
+I nested_func FUNCTION VOID FUNCTION INT INT
+S
+I foo VAR
+P C
+E
+P C
+Q
