@@ -20,15 +20,12 @@ int main() {
     }
 
     Puzzle p(n, start);
-    if (!Puzzle::solvable(start, n)) {
-        cout << "Unsolvable puzzle\n";
-        return 1;
-    }
 
     LinearConflict lc;
     ManhattanDistance md;
     CornerLinearConflict cl;
-    const Heuristic& chosen = cl;
+    ToroidalManhattanDistance tmc;
+    const Heuristic& chosen = tmc;
 
     auto result = astar(p, chosen);
     if (!result.success) {
@@ -36,7 +33,7 @@ int main() {
         return 1;
     }
 
-    cout << "Minimum number of moves = " << result.cost << ", nodes explored = " << result.expanded << "\n";
+    cout << "Minimum total cost = " << result.cost << ", nodes explored = " << result.expanded << "\n";
     for (auto &board : result.path) {
         for (int i = 0; i < total; ++i) {
             if (i % n == 0) cout << "\n";

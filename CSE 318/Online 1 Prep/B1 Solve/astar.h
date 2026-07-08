@@ -19,7 +19,7 @@ struct AStarResult {
 AStarResult astar(const Puzzle& start, const Heuristic& h, const int weight=1) {
     AStarResult res;
     int k = start.k;
-    if (!Puzzle::solvable(start.board, k)) return res;
+    //if (!Puzzle::solvable(start.board, k)) return res;
 
     vector<int> goal_board = start.board;
     for (int i = 0; i < k*k - 1; ++i) goal_board[i] = i+1;
@@ -72,7 +72,9 @@ AStarResult astar(const Puzzle& start, const Heuristic& h, const int weight=1) {
         Puzzle p(k, board);
         for (auto&& nb : p.neighbors()) {
             string nbk = nb.key();
-            int tentative_g = g + 1;
+            int tentative_g;
+            if(nb.isWrapAround) tentative_g = g+2;
+            else tentative_g = g+1;
             auto itg = gscore.find(nbk);
             if (itg==gscore.end() || tentative_g < itg->second) {
                 gscore[nbk] = tentative_g;

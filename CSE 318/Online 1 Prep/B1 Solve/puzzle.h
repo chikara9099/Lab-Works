@@ -8,6 +8,7 @@ class Puzzle {
 public:
     int k;
     vector<int> board;
+    bool isWrapAround = false;
 
     Puzzle(){
         k = 0;
@@ -15,6 +16,10 @@ public:
     Puzzle(int k, const vector<int>& board){
         this->k = k;
         this->board = board;
+    }
+
+    void setWrapAround(){
+        isWrapAround = true;
     }
 
     bool isGoal() const {
@@ -45,9 +50,24 @@ public:
         const int dc[4] = {0,0,-1,1};
         for (int i=0;i<4;i++) {
             int nr = r + dr[i], nc = c + dc[i];
-            if (nr<0 || nr>=k || nc<0 || nc>=k) continue;
-            int nidx = nr*k + nc;
+            int nidx;
+            bool isWrap = false;
+            if (nr < 0 || nr >= k) {
+                nr = ((nr % k) + k) % k;
+                nidx = nr * k + nc;
+                isWrap = true;
+            }
+            else if (nc < 0 || nc >= k) {
+                nc = ((nc % k) + k) % k;
+                nidx = nr * k + nc;
+                isWrap = true;
+            }
+            else {
+                nidx = nr * k + nc;
+            }
+
             Puzzle p = *this;
+            if (isWrap) p.setWrapAround();
             swap(p.board[idx], p.board[nidx]);
             out.push_back(move(p));
         }

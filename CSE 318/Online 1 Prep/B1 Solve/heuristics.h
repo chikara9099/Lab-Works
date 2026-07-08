@@ -179,3 +179,23 @@ struct CornerLinearConflict : Heuristic {
         return M + 2 * (lcCount + cornerConflicts);
     }
 };
+
+struct ToroidalManhattanDistance : Heuristic {
+    int operator()(const vector<int>& state, int k) const override {
+        int sum = 0;
+        int N = (int)state.size();
+        for (int i = 0; i < N; i++) {
+            int val = state[i];
+            if (val == 0) continue;
+            int target = val - 1;
+            int r1 = i / k; 
+            int c1 = i % k;
+            int r2 = target / k; 
+            int c2 = target % k;
+            int delR = min(abs(r1-r2), k-abs(r1-r2));
+            int delC = min(abs(c1-c2),k-abs(c1-c2));
+            sum += delR + delC;
+        }
+        return sum;
+    }
+};
